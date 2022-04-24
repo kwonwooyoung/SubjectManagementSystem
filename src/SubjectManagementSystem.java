@@ -7,9 +7,9 @@ public class SubjectManagementSystem {
 		int x = 0;
 		while (x != 5) {
 		System.out.println("*** Subject Management System Menu ***");
-		System.out.println("1. Add Subjects");
-		System.out.println("2. Delete Subjects");
-		System.out.println("3. Edit Subjects");
+		System.out.println("1. Add Subject");
+		System.out.println("2. Delete Subject");
+		System.out.println("3. Edit Subject");
 		System.out.println("4. View Subjects");
 		System.out.println("5. Exit");
 		System.out.print("Select one number 1-5:");
@@ -24,7 +24,7 @@ public class SubjectManagementSystem {
 			subject.edit();
 		}
 		else if (x == 4) {
-			subject.view();
+			subject.viewStudents();
 		}
 		else {
 			continue;
