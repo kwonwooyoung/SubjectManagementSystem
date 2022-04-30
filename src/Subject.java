@@ -1,7 +1,11 @@
 import java.util.ArrayList;
 import java.util.Scanner;
 
+import Student.Liberalarts;
+import Student.Medical;
+import Student.Operation;
 import Student.Student;
+import Student.StudentKind;
 
 public class Subject {
 	ArrayList<Student> students = new ArrayList<Student>();
@@ -13,25 +17,39 @@ public class Subject {
 	public void add() {
 		int kind = 0;
 		Student student;
-		while (kind != 1&& kind != 2) {
-			System.out.print(" 1 for engineering");
-			System.out.print(" 2 for Operation ");
-			System.out.print("Select num for Student Kind between 1 to 2: ");
+		while (kind != 1 && kind != 2 && kind != 1 && kind != 2) {
+			System.out.println(" 1 for engineering");
+			System.out.println(" 2 for Operation ");
+			System.out.println(" 3 for Medical");
+			System.out.println(" 4 for Liberalarts ");
+			System.out.print("Select num 1~4 for Student Kind: ");
 			kind = input.nextInt();
 			if(kind == 1) {
-				student = new Student();
-				student.getUserInput(input);
+				student = new Student(StudentKind.Engineering);
+				student.getUserInput(input); 
 				students.add(student);
 				break;
 			}
 			else if(kind == 2) {
-				student = new Student();
+				student = new Operation(StudentKind.Operation);
+				student.getUserInput(input);
+				students.add(student);
+				break;
+			}
+			else if(kind == 3) {
+				student = new Medical(StudentKind.Medical);
+				student.getUserInput(input);
+				students.add(student);
+				break;
+			}
+			else if(kind == 4) {
+				student = new Liberalarts(StudentKind.Liberalarts);
 				student.getUserInput(input);
 				students.add(student);
 				break;
 			}
 			else {
-				System.out.print("Select num for Student Kind : ");
+				System.out.print("Select num 1~4 for Student Kind: ");
 			}
 		}
 
@@ -51,11 +69,11 @@ public class Subject {
 			}
 		}
 		if(index >= 0) { 
-			System.out.println("the student " + id + " is deleted");
+			System.out.println("the subject " + subjectName + " is deleted");
 			students.remove(index);
 		}
 		else {
-			System.out.println("the student has not been registered");
+			System.out.println("the subject has not been registered");
 			return;
 		}
 	}
@@ -91,8 +109,6 @@ public class Subject {
 		}		
 		}
 	public void viewStudents() {
-//		System.out.print("Your ID: ");
-//		int id = input.nextInt();
 		for(int i = 0; i <students.size(); i++) {
 			students.get(i).printInfo();
 		}
