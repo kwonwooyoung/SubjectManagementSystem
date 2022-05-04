@@ -2,7 +2,10 @@ package Student;
 
 import java.util.Scanner;
 
-public class EngineeringStudent extends Student {
+public class EngineeringStudent extends Student implements StudentInput {
+	public EngineeringStudent(StudentKind kind) {
+		super(kind);
+	}
 	
 	public void getUserInput(Scanner input) {
 		System.out.print("Your ID: ");
@@ -16,5 +19,25 @@ public class EngineeringStudent extends Student {
 		System.out.print("Add Subject professor Name: ");
 		String professorName = input.next();
 		this.setProfessorName(professorName);
+	}
+	public void printInfo() {
+		String skind = "none";
+		switch(this.kind) {
+		case Engineering:
+			skind = "ENG";
+			break;
+		case Operation:
+			skind = "OPR";
+			break;
+		case Medical:
+			skind = "MED";
+			break;
+		case Liberalarts:
+			skind = "LIB"; 
+			break;
+		default:
+			
+		}
+		System.out.println("kind : " + skind + " id : " + id  + " " + "subjectName : " + subjectName + " " + "profeesorName : " + professorName);;
 	}
 }

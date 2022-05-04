@@ -2,13 +2,11 @@ package Student;
 
 import java.util.Scanner;
 
-public class Operation extends Student {
+public class Operation extends Student implements StudentInput{
 	public Operation(StudentKind kind) {
 		super(kind);
 	}
 	public void getUserInput(Scanner input) {
-		
-		
 		System.out.print("Your ID: ");
 		int id = input.nextInt();
 		this.setId(id);
@@ -21,5 +19,24 @@ public class Operation extends Student {
 		String professorName = input.next();
 		this.setProfessorName(professorName);
 	}
-
+	public void printInfo() {
+		String skind = "none";
+		switch(this.kind) {
+		case Engineering:
+			skind = "ENG";
+			break;
+		case Operation:
+			skind = "OPR";
+			break;
+		case Medical:
+			skind = "MED";
+			break;
+		case Liberalarts:
+			skind = "LIB"; 
+			break;
+		default:
+			
+		}
+		System.out.println("kind : " + skind + " id : " + id  + " " + "subjectName : " + subjectName + " " + "profeesorName : " + professorName);;
+	}
 }
