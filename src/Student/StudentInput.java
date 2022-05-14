@@ -15,7 +15,14 @@ public interface StudentInput {
 	
 	public void setProfessorName(String professorName);
 	
+	public void setId(int id);
+	
 	public void printInfo();
 	
+	public void setStudentId(Scanner input);
+	
+	public void setSubjectName(Scanner input);
+	
+	public void setprofessorName(Scanner input);
 
 }

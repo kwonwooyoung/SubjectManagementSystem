@@ -1,7 +1,7 @@
 package Student;
 import java.util.Scanner;
 
-public abstract class Student {
+public abstract class Student implements StudentInput{
 	protected StudentKind kind = StudentKind.Engineering;
 	protected int number;
 	protected String subjectName;
@@ -70,5 +70,42 @@ public abstract class Student {
 	}
 
 	public abstract void printInfo(); 
+	
+	public void setStudentId(Scanner input) {
+		System.out.print("Studnet id: ");
+		int id =input.nextInt();
+		this.setId(id);
+	}
+	
+	public void setSubjectName(Scanner input) {
+		System.out.print("편집할 과목을 고르시오 : ");
+		String subjectName = input.next();
+		this.setSubjectName(subjectName);
+	} 
+	
+	public void setprofessorName(Scanner input) {
+		System.out.print("편집할 과목의 교수님 성함을 입력하시오 : ");
+		String professorName = input.next();
+		this.setProfessorName(professorName);
+	}
+	public String getkind() {
+		String skind = "none";
+		switch(this.kind) {
+		case Engineering:
+			skind = "ENG";
+			break;
+		case Operation:
+			skind = "OPR";
+			break;
+		case Medical:
+			skind = "MED";
+			break;
+		case Liberalarts:
+			skind = "LIB"; 
+			break;
+		default:
+		}
+		return skind;
+	}
 
 }
