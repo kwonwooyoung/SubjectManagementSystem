@@ -1,11 +1,23 @@
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class SubjectManagementSystem {
-	public static void main (String[] args) {
+	static EventLogger logger = new EventLogger("log.txt");
+	
+	public static void main (String[] args) { 
 		Scanner input = new Scanner(System.in);
-		Subject subject = new Subject(input);
+		Subject subject = getObject("subject.ser");
+		if(subject == null) {
+			subject = new Subject(input);
+		}
 		selectMenu(input, subject);
+		putObject(subject, "subject.ser");
 	}
 	public static void selectMenu(Scanner input, Subject subject) {
 		int x = 0;
@@ -16,15 +28,19 @@ public class SubjectManagementSystem {
 			switch(x) {
 			case 1:
 				subject.add();
+				logger.log("add a subject");
 				break;
 			case 2:
 				subject.delete();
+				logger.log("delete a subject");
 				break;
 			case 3:
 				subject.edit();
+				logger.log("edit a subject");
 				break;
 			case 4:
 				subject.viewStudents();
+				logger.log("view a subject");
 				break;  
 			default:
 				continue;
@@ -49,5 +65,42 @@ public class SubjectManagementSystem {
 		System.out.println("5. Exit");
 		System.out.print("Select one number 1-5:");
 	}
+	public static Subject getObject(String filename) {
+		Subject subject = null;
+		try {
+			FileInputStream file = new FileInputStream(filename);
+			ObjectInputStream in = new ObjectInputStream(file);
+			
+			subject = (Subject) in.readObject();
+			
+			in.close();
+			file.close();
+		} catch(FileNotFoundException e) {
+			return subject;
+		} catch(IOException e) {
+			e.printStackTrace();
+		} catch(ClassNotFoundException e) {
+			e.printStackTrace();
+		}
+		
+		return subject;
+	} 
+	public static Subject putObject(Subject subject, String filename) {
+		try {
+			FileOutputStream file = new FileOutputStream(filename);
+			ObjectOutputStream out = new ObjectOutputStream(file);
+			
+			out.writeObject(subject);
+			
+			out.close();
+			file.close();
+		} catch(FileNotFoundException e) {
+			e.printStackTrace();
+		} catch(IOException e) {
+			e.printStackTrace();
+		} 
+		
+		return subject;
+	} 
 }
 

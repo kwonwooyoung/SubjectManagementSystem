@@ -1,7 +1,13 @@
 package Student;
+import java.io.Serializable;
 import java.util.Scanner;
 
-public abstract class Student implements StudentInput{
+public abstract class Student implements StudentInput, Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -3412894054986286802L;
+	
 	protected StudentKind kind = StudentKind.Engineering;
 	protected int number;
 	protected String subjectName;
@@ -78,13 +84,13 @@ public abstract class Student implements StudentInput{
 	}
 	
 	public void setSubjectName(Scanner input) {
-		System.out.print("편집할 과목을 고르시오 : ");
+		System.out.print("과목을 입력하시오 : ");
 		String subjectName = input.next();
 		this.setSubjectName(subjectName);
 	} 
 	
 	public void setprofessorName(Scanner input) {
-		System.out.print("편집할 과목의 교수님 성함을 입력하시오 : ");
+		System.out.print("교수님의 성함을 입력하시오 : ");
 		String professorName = input.next();
 		this.setProfessorName(professorName);
 	}

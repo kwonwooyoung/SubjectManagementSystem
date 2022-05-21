@@ -1,3 +1,4 @@
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.Scanner;
@@ -10,9 +11,14 @@ import Student.Student;
 import Student.StudentInput;
 import Student.StudentKind;
 
-public class Subject {
+public class Subject implements Serializable {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 7662770305749581270L;
+	
 	ArrayList<StudentInput> students = new ArrayList<StudentInput>();
-	Scanner input;
+	transient Scanner input;
 	int a;
 	Subject(Scanner input){
 		this.input = input;
