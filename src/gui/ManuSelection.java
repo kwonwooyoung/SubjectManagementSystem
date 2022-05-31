@@ -7,11 +7,17 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-public class ManuSelection extends JFrame {
+import listeners.ButtonAddListener2;
+import listeners.ButtonViewListener;
+
+public class ManuSelection extends JPanel {
 	
-	public ManuSelection() {
-		this.setSize(300, 300);
-		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); 
+	WindowFrame frame;
+	
+	public ManuSelection(WindowFrame frame) {
+		this.frame = frame;
+		this.setLayout(new BorderLayout());
+		
 		
 		JPanel panel1 = new JPanel();
 		JPanel panel2 = new JPanel();
@@ -22,6 +28,9 @@ public class ManuSelection extends JFrame {
 		JButton button3 = new JButton("Edit Subject");
 		JButton button4 = new JButton("view Subject");
 		JButton button5 = new JButton("Exit Program");
+		 
+		button1.addActionListener(new ButtonAddListener2(frame));
+		button4.addActionListener(new ButtonViewListener(frame));
 		
 		panel2.add(label);
 		panel1.add(button1);

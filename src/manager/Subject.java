@@ -1,3 +1,4 @@
+package manager;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.InputMismatchException;
@@ -19,14 +20,14 @@ public class Subject implements Serializable {
 	
 	ArrayList<StudentInput> students = new ArrayList<StudentInput>();
 	transient Scanner input;
-	int a;
+	
 	Subject(Scanner input){
 		this.input = input;
 	}
 	public void add() {
 		int kind = 0;
 		StudentInput studentInput;
-		while (kind != 1 && kind != 2 && kind != 3 && kind != 4) {
+		while (kind < 1 || kind > 4) {
 			try { 
 				System.out.println(" 1 for engineering");
 				System.out.println(" 2 for Operation ");
@@ -136,6 +137,13 @@ public class Subject implements Serializable {
 			for(int i = 0; i <students.size(); i++) {
 				students.get(i).printInfo();
 			}
+		}
+		public int size() {
+			return students.size();
+		}
+		
+		public StudentInput get(int index) {
+			return (Student) students.get(index);
 		}
 		
 		public void showEditMenu() {

@@ -1,3 +1,4 @@
+package manager;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -7,20 +8,30 @@ import java.io.ObjectOutputStream;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
+
+import gui.WindowFrame;
+
+
+
 public class SubjectManagementSystem {
 	static EventLogger logger = new EventLogger("log.txt");
 	
 	public static void main (String[] args) { 
 		Scanner input = new Scanner(System.in);
+		
 		Subject subject = getObject("subject.ser");
+
 		if(subject == null) {
 			subject = new Subject(input);
 		}
+
+		
+		WindowFrame frame = new WindowFrame(subject);
 		selectMenu(input, subject);
 		putObject(subject, "subject.ser");
 	}
 	public static void selectMenu(Scanner input, Subject subject) {
-		int x = 0;
+		int x = -1	;
 		while (x != 5) {
 		try {
 			showMenu();
@@ -85,7 +96,7 @@ public class SubjectManagementSystem {
 		
 		return subject;
 	} 
-	public static Subject putObject(Subject subject, String filename) {
+	public static void putObject(Subject subject, String filename) {
 		try {
 			FileOutputStream file = new FileOutputStream(filename);
 			ObjectOutputStream out = new ObjectOutputStream(file);
@@ -100,7 +111,7 @@ public class SubjectManagementSystem {
 			e.printStackTrace();
 		} 
 		
-		return subject;
+		
 	} 
 }
 
