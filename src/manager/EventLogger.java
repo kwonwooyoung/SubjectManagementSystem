@@ -22,8 +22,7 @@ public class EventLogger {
 			logger.addHandler(filehandler);
 		} catch(IOException e) {
 			e.printStackTrace();
-		}
-		
+		}	
 	}
 	
 	public void log(String logMessage) {

@@ -17,13 +17,23 @@ public class Subject implements Serializable {
 	 * 
 	 */
 	private static final long serialVersionUID = 7662770305749581270L;
-	
 	ArrayList<StudentInput> students = new ArrayList<StudentInput>();
 	transient Scanner input;
-	
 	Subject(Scanner input){
 		this.input = input;
 	}
+	
+	public void add(int ID, String subjectName, String professorName) {
+		StudentInput studentInput = new EngineeringStudent(StudentKind.Engineering);
+		studentInput.getUserInput(input); 
+		students.add(studentInput);
+	}
+	
+	public void add(StudentInput studentInput) {
+		students.add(studentInput);
+	}
+	
+	
 	public void add() {
 		int kind = 0;
 		StudentInput studentInput;

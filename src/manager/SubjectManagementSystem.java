@@ -11,21 +11,14 @@ import java.util.Scanner;
 
 import gui.WindowFrame;
 
-
-
 public class SubjectManagementSystem {
 	static EventLogger logger = new EventLogger("log.txt");
-	
 	public static void main (String[] args) { 
 		Scanner input = new Scanner(System.in);
-		
 		Subject subject = getObject("subject.ser");
-
 		if(subject == null) {
 			subject = new Subject(input);
 		}
-
-		
 		WindowFrame frame = new WindowFrame(subject);
 		selectMenu(input, subject);
 		putObject(subject, "subject.ser");
@@ -54,8 +47,7 @@ public class SubjectManagementSystem {
 				logger.log("view a subject");
 				break;  
 			default:
-				continue;
-						
+				continue;		
 				}
 			}
 			catch(InputMismatchException e) {
@@ -81,9 +73,7 @@ public class SubjectManagementSystem {
 		try {
 			FileInputStream file = new FileInputStream(filename);
 			ObjectInputStream in = new ObjectInputStream(file);
-			
 			subject = (Subject) in.readObject();
-			
 			in.close();
 			file.close();
 		} catch(FileNotFoundException e) {
@@ -93,16 +83,13 @@ public class SubjectManagementSystem {
 		} catch(ClassNotFoundException e) {
 			e.printStackTrace();
 		}
-		
 		return subject;
 	} 
 	public static void putObject(Subject subject, String filename) {
 		try {
 			FileOutputStream file = new FileOutputStream(filename);
 			ObjectOutputStream out = new ObjectOutputStream(file);
-			
 			out.writeObject(subject);
-			
 			out.close();
 			file.close();
 		} catch(FileNotFoundException e) {
@@ -110,8 +97,6 @@ public class SubjectManagementSystem {
 		} catch(IOException e) {
 			e.printStackTrace();
 		} 
-		
-		
 	} 
 }
 

@@ -11,14 +11,10 @@ import listeners.ButtonAddListener2;
 import listeners.ButtonViewListener;
 
 public class ManuSelection extends JPanel {
-	
 	WindowFrame frame;
-	
 	public ManuSelection(WindowFrame frame) {
 		this.frame = frame;
 		this.setLayout(new BorderLayout());
-		
-		
 		JPanel panel1 = new JPanel();
 		JPanel panel2 = new JPanel();
 		JLabel label = new JLabel("Menu Selection");
